@@ -1,0 +1,86 @@
+{
+  gym: [1, 0, 0, 1, 2]
+  school: []
+  store : []
+}
+
+
+main(blocks, list)
+  let keyValueSet = {}
+  
+  for(let key in list){
+    keyValueSet[key] = blocks.map((el) => Infinity)
+  }
+
+ 
+for(let i = 1; i < blocks.length; i++){
+    for(let element in keyValueSet){
+    let currObj = blocks[element]
+        if(currObj[element] === true){
+          keyValueSet[element][i] = 0
+        }else {
+          keyValueSet[element][i] = keyValueSet[element][i - 1] + 1
+        }
+    }
+ }
+
+
+for(let j = blocks.length - 2; j >= 0; j--){
+   for(let element in keyValueSet){
+          keyValueSet[element][i] = Math.min(keyValueSet[element][j], keyValueSet[element][j + 1] + 1)
+    }
+}
+let arrayOfResult = []
+
+for(let i = 0; i < blocks.length; i++){
+let maximumDistance = -Infinity
+  for(let element in keyValueSet){
+     maximumDistance = Math.max(maximumDistance, keyValueSet[element][i])
+  }
+  arrayOfResult[i] = maximumDistance
+}
+
+return arrayOfResult.indexOf(Math.min(...result))
+
+
+function apartmentHunting(blocks, reqs) {
+  // Write your code here.
+  let keyValueSet = {}
+  for(let elements of reqs){
+    keyValueSet[elements] = blocks.map((el) => Infinity)
+  }
+  
+  for(let i = 1; i < blocks.length; i++){
+    for(let elements of reqs){
+      let currObj = blocks[i]
+      if(currObj[elements]){
+        keyValueSet[elements][i] = 0
+      }else {
+        keyValueSet[elements][i] = keyValueSet[elements][i - 1] + 1
+      }
+    }
+  }
+  
+  
+  for(let j = blocks.length - 2; j >= 0; j--){
+    for(let elements of reqs){
+      keyValueSet[elements][j] = Math.min(keyValueSet[elements][j], keyValueSet[elements][j + 1] + 1)
+    }
+  }
+  
+  let arrayOfResult = []
+  
+  for(let i = 0; i < blocks.length; i++){
+  let maximumDistance = -Infinity
+    for(let elements of reqs){
+      maximumDistance = Math.max(maximumDistance, keyValueSet[elements][i])
+    }
+    arrayOfResult[i] = maximumDistance
+  }
+  
+  return arrayOfResult.indexOf(Math.min(...result))
+}
+
+// Do not edit the line below.
+exports.apartmentHunting = apartmentHunting;
+

@@ -1,0 +1,6 @@
+Solution Approach :— 
+There are multiple possible answers to that question, where we can basically establish a choose among space and time complexities.
+
+We will first stores the farthest distance of a particular service for every block. Now for every block, we will go through every requirement and find the closest 
+block that satisfies that requirements and change value for that block with a minimum of the current value and maximum distance for any requirement. 
+At the end we will return the index of the minimum value.
